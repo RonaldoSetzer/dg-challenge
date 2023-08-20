@@ -10,9 +10,7 @@ export class Category {
   ) { }
 
   public addPlugin(plugin: Plugin, active?: boolean, enabled?: boolean) {
-    if (enabled) {
-      plugin.enable();
-    }
+    enabled? plugin.enable() : plugin.disable();
     active ? plugin.activate() : plugin.deactivate();
     this.plugins.push(plugin);
   }

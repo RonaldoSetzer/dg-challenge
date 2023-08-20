@@ -34,6 +34,18 @@ describe('Category', () => {
       category.addPlugin(plugin as any, false);
       expect(category.plugins).toEqual([plugin]);
     });
+
+    it('should add plugin to plugins array with enabled true', () => {
+      const plugin = new Plugin('1', 'Plugin', 'description');
+      category.addPlugin(plugin as any, false, true);
+      expect(category.plugins).toEqual([plugin]);
+    });
+
+    it('should add plugin to plugins array with enabled false', () => {
+      const plugin = new Plugin('1', 'Plugin', 'description');
+      category.addPlugin(plugin as any, false, false);
+      expect(category.plugins).toEqual([plugin]);
+    });
   });
 
   describe('removePlugin', () => {
