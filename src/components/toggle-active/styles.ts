@@ -7,7 +7,7 @@ export const ToggleOn = styled(IconOn)`
 `;
 
 export const ToggleOff = styled(IconOff)`
-  width: 2.5rem;
+  width: 3rem;
   fill: red;
 `;
 
