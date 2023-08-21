@@ -9,6 +9,10 @@ import { categoriesSlice } from "./redux/categories-slice";
 
 const Container = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 function App() {

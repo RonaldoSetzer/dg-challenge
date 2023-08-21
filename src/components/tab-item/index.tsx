@@ -10,7 +10,7 @@ function TabItem({ label, active }: TabProps) {
   return (
     <Container active={active}>
       <Folder size={20} />
-      <h3>{label}</h3>
+      {label}
     </Container>
   );
 }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { categoriesSlice } from "../../redux/categories-slice";
 import { RootState } from "../../redux/store";
 import PluginCard from "../../components/plugin-card";
-import { Grid } from "./styles";
+import { Container, Grid } from "./styles";
 
 interface MainContainerProps {
   categoryId?: string;
@@ -22,7 +22,7 @@ function MainContainer({ categoryId }: MainContainerProps) {
   };
 
   return (
-    <div>
+    <Container>
       {currentCategory && <h2>{currentCategory.title} Plugins</h2>}
       <Grid>
         {currentCategory && currentCategory.plugins.map((plugin) => (
@@ -36,7 +36,7 @@ function MainContainer({ categoryId }: MainContainerProps) {
           />
         ))}
       </Grid>
-    </div>
+    </Container>
   );
 }
 

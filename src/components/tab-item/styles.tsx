@@ -3,12 +3,15 @@ import styled from "styled-components";
 export const Container = styled.div<{ active?: boolean }>`
   display: flex;
   align-items: center;
-  padding: .5rem;
+  padding: 1rem;
+  padding-left: 1.5rem;
   gap: .5rem;
   cursor: pointer;
+  border-width: 0;
   border-left-style: solid;
-  border-left-width: 10px;
-  border-left-color: ${({ active }) => (active ? "#FF0000" : "transparent")};
-  background-color: ${({ active }) => (active ? "#f5f6fa" : "transparent")};
+  border-left-width: 0.5rem;
+  border-left-color: ${({ active }) => (active ? "var(--disabled-color)" : "transparent")};
+  background-color: ${({ active }) => (active ? "var(--background-color)" : "transparent")};
 `;
+
 

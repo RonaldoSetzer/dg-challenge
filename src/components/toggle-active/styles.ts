@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { ToggleOff as IconOff, ToggleOn as IconOn } from "../icons";
 
 export const ToggleOn = styled(IconOn)`
-  width: 2rem;
-  fill: green;
+  width: 3rem;
+  fill: var(--enabled-color);
 `;
 
 export const ToggleOff = styled(IconOff)`
-  width: 2rem;
+  width: 2.5rem;
   fill: red;
 `;
 
@@ -20,9 +20,9 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label<{ active?: boolean }>`
-  font-size: .5rem;
+  font-size: .8rem;
   font-weight: 500;
-  color: ${(props) => (props.active ? "green" : "red")};
+  color: ${(props) => (props.active ? "var(--enabled-color)" : "var(--disabled-color)")};
 `;
 
 export const Button = styled.button`

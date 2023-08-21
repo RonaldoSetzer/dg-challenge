@@ -1,5 +1,5 @@
 import ToggleActive from "../toggle-active";
-import { Container, Header } from "./styles";
+import { Container, Header, Body, Title } from "./styles";
 
 interface PluginCardProps {
   title?: string;
@@ -26,13 +26,13 @@ function PluginCard({ title, description, enable, active, onToggleActive }: Plug
   return (
     <Container enable={enable}>
       <Header>
-        <h2>{title}</h2>
+        <Title>{title}</Title>
         <ToggleActive
           active={active}
           onChange={handleToggleActive}
         />
       </Header>
-      <p> {description}</p>
+      <Body> {description}</Body>
     </Container>
   )
 }
