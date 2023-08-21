@@ -23,6 +23,7 @@ function SideMenu({ categories, currentCategory, pluginsEnable, onToggleEnable }
               <Link to={`/${category.title}`}>
                 <TabItem
                   label={category.title}
+                  icon={category.icon}
                   active={currentCategory && currentCategory.id === category.id || false}
                 />
               </Link>
