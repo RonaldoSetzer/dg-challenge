@@ -8,9 +8,11 @@ import ToggleEnable from "../toggle-enable";
 interface SideMenuProps {
   categories: Category[];
   currentCategory?: Category;
+  pluginsEnable?: boolean;
+  onToggleEnable: () => void;
 }
 
-function SideMenu({ categories, currentCategory }: SideMenuProps) {
+function SideMenu({ categories, currentCategory, pluginsEnable, onToggleEnable }: SideMenuProps) {
   return (
     <Container>
       <Header>
@@ -30,7 +32,7 @@ function SideMenu({ categories, currentCategory }: SideMenuProps) {
       </Header>
       <Footer>
         All plugins enabled
-        <ToggleEnable />
+        <ToggleEnable onChange={onToggleEnable} active={pluginsEnable} />
       </Footer>
     </Container>
   );

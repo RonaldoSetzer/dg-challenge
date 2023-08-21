@@ -12,7 +12,7 @@ const Container = styled.div`
 `
 
 function App() {
-  const { categories, currentCategory } = useSelector((state: RootState) => state.categories);
+  const { categories, currentCategory, pluginsEnabled } = useSelector((state: RootState) => state.categories);
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -24,10 +24,18 @@ function App() {
     fetchdata()
   }, [])
 
+  function handleEnableAllPlugins() {
+    dispatch(categoriesSlice.actions.toggleEnableAllPlugins());
+  }
+
   return (
     <BrowserRouter>
       <Container>
-        <SideMenu categories={categories} currentCategory={currentCategory} />
+        <SideMenu 
+          categories={categories} 
+          currentCategory={currentCategory} 
+          pluginsEnable={pluginsEnabled} 
+          onToggleEnable={handleEnableAllPlugins} />
         <Routes>
           <Route path="/" element={<MainContainer />} />
           {categories.map((category) => (

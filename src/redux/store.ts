@@ -1,6 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import { uiSlice } from './ui-slice';
 import { categoriesSlice } from './categories-slice';
 
 const customizedMiddleware = getDefaultMiddleware({
@@ -8,7 +7,6 @@ const customizedMiddleware = getDefaultMiddleware({
 })
 
 const rootReducer = combineReducers({
-  ui: uiSlice.reducer,
   categories: categoriesSlice.reducer,
 });
 

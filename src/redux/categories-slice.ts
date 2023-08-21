@@ -2,18 +2,18 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Category } from "../domain/entities/category.entity";
 import { SeedByApiUseCase } from "../usecases/seed-by-api.usecase";
 import { PluginsDto, TabDataDto } from "../domain/dtos/api-payload.dto"
+import { EnableAllPluginsUseCase } from "../usecases/enable-all-plugins.usecase";
+import { DisableAllPluginsUseCase } from "../usecases/disable-all-plugins.usecase";
 
 interface CategoriesState {
   categories: Category[];
   currentCategory?: Category;
+  pluginsEnabled?: boolean;
 }
 
 const initialState: CategoriesState = {
-  categories: [
-    new Category("Marketing", "marketing", "Marketing"),
-    new Category("Sales", "sales", "Sales"),
-    new Category("Customer Success", "customer-success", "Customer Success"),
-  ],
+  categories: [],
+  pluginsEnabled: true
 };
 
 const categoriesReducer = createSlice({
@@ -23,7 +23,16 @@ const categoriesReducer = createSlice({
     setCurrentCategory: (state, action: PayloadAction<string>) => {
       state.currentCategory = state.categories.find((c) => c.id === action.payload);
     },
-    seedCategories: (state, action: PayloadAction<{tabs: string[], plugins: PluginsDto, tabdata: TabDataDto}>) => {
+    toggleEnableAllPlugins: (state) => {
+      const enabled = !state.pluginsEnabled
+      enabled
+        ? new EnableAllPluginsUseCase(state.categories).execute()
+        : new DisableAllPluginsUseCase(state.categories).execute();
+      state.categories = [...state.categories];
+      state.pluginsEnabled = enabled;
+      state.currentCategory = state.categories.find((c) => c.id === state.currentCategory?.id);
+    },
+    seedCategories: (state, action: PayloadAction<{ tabs: string[], plugins: PluginsDto, tabdata: TabDataDto }>) => {
       const { tabs, tabdata, plugins } = action.payload;
       if (!tabs || !tabdata || !plugins) {
         return;
