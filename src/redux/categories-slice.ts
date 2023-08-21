@@ -4,6 +4,7 @@ import { SeedByApiUseCase } from "../usecases/seed-by-api.usecase";
 import { PluginsDto, TabDataDto } from "../domain/dtos/api-payload.dto"
 import { EnableAllPluginsUseCase } from "../usecases/enable-all-plugins.usecase";
 import { DisableAllPluginsUseCase } from "../usecases/disable-all-plugins.usecase";
+import { TogglePluginActiveUseCase } from "../usecases/toggle-plugin-active.usecase";
 
 interface CategoriesState {
   categories: Category[];
@@ -30,6 +31,15 @@ const categoriesReducer = createSlice({
         : new DisableAllPluginsUseCase(state.categories).execute();
       state.categories = [...state.categories];
       state.pluginsEnabled = enabled;
+      state.currentCategory = state.categories.find((c) => c.id === state.currentCategory?.id);
+    },
+    togglePluginActive: (state, action: PayloadAction<string>) => {
+      const category = state.categories.find((c) => c.id === state.currentCategory?.id);
+      if (!category) {
+        return;
+      }
+      new TogglePluginActiveUseCase(category,action.payload).execute();
+      state.categories = [...state.categories];
       state.currentCategory = state.categories.find((c) => c.id === state.currentCategory?.id);
     },
     seedCategories: (state, action: PayloadAction<{ tabs: string[], plugins: PluginsDto, tabdata: TabDataDto }>) => {

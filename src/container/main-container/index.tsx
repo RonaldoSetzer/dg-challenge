@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { categoriesSlice } from "../../redux/categories-slice";
 import { RootState } from "../../redux/store";
 import PluginCard from "../../components/plugin-card";
-
 import { Grid } from "./styles";
 
 interface MainContainerProps {
@@ -18,6 +17,10 @@ function MainContainer({ categoryId }: MainContainerProps) {
     if (categoryId) dispatch(categoriesSlice.actions.setCurrentCategory(categoryId));
   }, [categoryId]);
 
+  function handleEnablePlugin(id: string) {
+    dispatch(categoriesSlice.actions.togglePluginActive(id));
+  };
+
   return (
     <div>
       {currentCategory && <h2>{currentCategory.title} Plugins</h2>}
@@ -29,10 +32,9 @@ function MainContainer({ categoryId }: MainContainerProps) {
             title={plugin.title}
             active={plugin.active}
             enable={plugin.enabled}
+            onToggleActive={() => handleEnablePlugin(plugin.id)}
           />
-
         ))}
-
       </Grid>
     </div>
   );

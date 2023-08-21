@@ -18,13 +18,18 @@ const defaultProps: PluginCardProps = {
 };
 
 function PluginCard({ title, description, enable, active, onToggleActive }: PluginCardProps) {
+  function handleToggleActive() {
+    if (onToggleActive && enable) {
+      onToggleActive();
+    }
+  }
   return (
     <Container enable={enable}>
       <Header>
         <h2>{title}</h2>
         <ToggleActive
           active={active}
-          onChange={onToggleActive}
+          onChange={handleToggleActive}
         />
       </Header>
       <p> {description}</p>
