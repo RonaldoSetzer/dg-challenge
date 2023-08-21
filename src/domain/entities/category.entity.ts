@@ -32,16 +32,24 @@ export class Category {
     this.plugins.find((p) => p.id === plugin.id)?.activate();
   }
 
-  public activateAllPlugins() {
-    this.plugins.forEach((p) => p.activate());
-  }
-
   public deactivatePlugin(plugin: Plugin) {
     this.plugins.find((p) => p.id === plugin.id)?.deactivate();
   }
 
+  public activateAllPlugins() {
+    this.plugins.forEach((p) => p.activate());
+  }
+
   public deactivateAllPlugins() {
     this.plugins.forEach((p) => p.deactivate());
+  }
+
+  public enableAllPlugins() {
+    this.plugins.forEach((p) => p.enable());
+  }
+
+  public disableAllPlugins() {
+    this.plugins.forEach((p) => p.disable());
   }
 
   public getPluginById(id: string) {

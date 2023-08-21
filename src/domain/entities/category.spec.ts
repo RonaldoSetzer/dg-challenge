@@ -122,6 +122,45 @@ describe('Category', () => {
     });
   });
 
+  describe('activateAllPlugins', () => {
+    it('should activate all plugins', () => {
+      const plugin1 = new Plugin('1', 'Plugin', 'description');
+      const plugin2 = new Plugin('2', 'Plugin', 'description');
+      category.addPlugin(plugin1);
+      category.addPlugin(plugin2);
+      category.deactivateAllPlugins();
+      category.activateAllPlugins();
+      expect(category.plugins[0].active).toBe(true);
+      expect(category.plugins[1].active).toBe(true);
+    });
+  });
+
+  describe('enableAllPlugins', () => {
+    it('should enable all plugins', () => {
+      const plugin1 = new Plugin('1', 'Plugin', 'description');
+      const plugin2 = new Plugin('2', 'Plugin', 'description');
+      category.addPlugin(plugin1);
+      category.addPlugin(plugin2);
+      category.disableAllPlugins();
+      category.enableAllPlugins();
+      expect(category.plugins[0].enabled).toBe(true);
+      expect(category.plugins[1].enabled).toBe(true);
+    });
+  });
+
+  describe('disableAllPlugins', () => {
+    it('should disable all plugins', () => {
+      const plugin1 = new Plugin('1', 'Plugin', 'description');
+      const plugin2 = new Plugin('2', 'Plugin', 'description');
+      category.addPlugin(plugin1);
+      category.addPlugin(plugin2);
+      category.enableAllPlugins();
+      category.disableAllPlugins();
+      expect(category.plugins[0].enabled).toBe(false);
+      expect(category.plugins[1].enabled).toBe(false);
+    });
+  });
+
   describe('getPluginById', () => {
     it('should return plugin by id', () => {
       const plugin = new Plugin('1', 'Plugin', 'description');
