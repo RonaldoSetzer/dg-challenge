@@ -21,6 +21,9 @@ const categoriesReducer = createSlice({
   name: 'categories',
   initialState,
   reducers: {
+    fetchCategories: (state) => {
+      return state;
+    },
     setCurrentCategory: (state, action: PayloadAction<string>) => {
       state.currentCategory = state.categories.find((c) => c.id === action.payload);
     },
