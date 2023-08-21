@@ -9,7 +9,7 @@ export class SeedByApiUseCase {
     private readonly plugins: PluginsDto,
   ) { }
 
-  async execute(): Promise<Category[]> {
+  execute(): Category[] {
     const categories: Category[] = [];
     this.tabs.forEach((tab) => {
       const category = CategoryFactory.create(tab, this.tabdata, this.plugins)

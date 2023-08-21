@@ -1,5 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Category } from "../domain/entities/category.entity";
+import { SeedByApiUseCase } from "../usecases/seed-by-api.usecase";
+import { PluginsDto, TabDataDto } from "../domain/dtos/api-payload.dto"
 
 interface CategoriesState {
   categories: Category[];
@@ -21,8 +23,12 @@ const categoriesReducer = createSlice({
     setCurrentCategory: (state, action: PayloadAction<string>) => {
       state.currentCategory = state.categories.find((c) => c.id === action.payload);
     },
-    seedCategories: (state, action: PayloadAction<Category[]>) => {
-      state.categories = action.payload;
+    seedCategories: (state, action: PayloadAction<{tabs: string[], plugins: PluginsDto, tabdata: TabDataDto}>) => {
+      const { tabs, tabdata, plugins } = action.payload;
+      if (!tabs || !tabdata || !plugins) {
+        return;
+      }
+      state.categories = new SeedByApiUseCase(tabs, tabdata, plugins).execute();
     },
   },
 });

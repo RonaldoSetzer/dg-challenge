@@ -18,7 +18,7 @@ function SideMenu({ categories, currentCategory }: SideMenuProps) {
         <ul>
           {categories && categories.map((category) => (
             <li key={category.id}>
-              <Link to={`/${category.id}`}>
+              <Link to={`/${category.title}`}>
                 <TabItem
                   label={category.title}
                   active={currentCategory && currentCategory.id === category.id || false}

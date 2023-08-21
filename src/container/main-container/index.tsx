@@ -12,7 +12,6 @@ function MainContainer({ categoryId }: MainContainerProps) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("categoryId", categoryId);
     if (categoryId) dispatch(categoriesSlice.actions.setCurrentCategory(categoryId));
   }, [categoryId]);
 
